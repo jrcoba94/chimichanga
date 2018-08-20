@@ -46,6 +46,35 @@
         .bs-example {
             margin: 20px;
         }
+
+        .overlay-pro {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: rgba(79, 0, 110, 0.692);
+        }
+
+        #over:hover .overlay-pro {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            color: white;
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -111,18 +140,32 @@
                             <div class="products-widget-slick row" data-nav="#slick-nav-3">
                                 <% for( var i = 0; i < documentos.length; i++) { %>
                                     <!-- product widget -->
-                                    <div class="product col-md-3" style="height: 350px;">
-                                        <div class="product-img">
+                                    <div class="product col-md-4" style="height: 380px;">
+                                        <div id="over" class="product-img">
                                             <a href="/detalleProducto/<%= documentos[i].ID %>">
-                                                <img src="./imagesProductos/<%= documentos[i].imagen %>" alt="Foto-NO-Disponible" class="img-responsive" style="height: 200px;">
+                                                <img src="./imagesProductos/<%= documentos[i].imagen %>" alt="Foto-NO-Disponible" class="img-responsive" style="height: 200px; width: 100%;">
                                             </a>
+                                            <div class="overlay-pro">
+                                                <p class="overlay-text">Autor :
+                                                    <%= documentos[i].autor %>
+                                                </br>
+                                                    Tecnología :
+                                                    <%= documentos[i].tecnologia %>
+                                                </br>
+                                                    Descripción :
+                                                    <%= documentos[i].descripcion %>
+                                                </p>
+                                            </div>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Vendidos :
-                                                <%= documentos[i].vendidos %> u</p>
                                             <h3 class="product-name">
                                                 <%= documentos[i].titulo %>
                                             </h3>
+                                            <hr>
+                                            <p class="product-category">Vendidos :
+                                                <%= documentos[i].vendidos %> u</p>
+                                            <p class="product-category">Existencia :
+                                                <%= documentos[i].existencia %> u</p>
                                             <h4 class="product-price">$
                                                 <%= documentos[i].precio %>
                                                     <!--<del class="product-old-price">$<%= documentos[i].precio %></del>-->

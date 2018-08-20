@@ -338,7 +338,7 @@ router.post('/filtrado', function (req, res, next) {
 });
 
 router.post('/filtradoVentas', function (req, res, next) {
-  db.query("SELECT * FROM ventas where fecha LIKE '"+req.body.ano+"%-"+req.body.mes+"%-"+req.body.dia+"%'", function (err, resultados) {
+  db.query("SELECT * FROM ventas where fecha LIKE '" + req.body.ano + "%-" + req.body.mes + "%-" + req.body.dia + "%'", function (err, resultados) {
     res.render('panelVentas', { title: 'Ventas', documentos: resultados });
   });
 });
@@ -628,10 +628,10 @@ router.get('/pay/:carrito/:total', function (req, res) {
         "payment_method": "paypal"
       },
       "redirect_urls": {
-        "return_url": "https://electtroshop.herokuapp.com/successPage",
-        "cancel_url": "https://electtroshop.herokuapp.com/panelUsuario"
-        //"return_url": "http://localhost:3000/successPage",
-        //"cancel_url": "http://localhost:3000/panelUsuario"
+        //"return_url": "https://electtroshop.herokuapp.com/successPage",
+        //"cancel_url": "https://electtroshop.herokuapp.com/panelUsuario"
+        "return_url": "http://localhost:3000/successPage",
+        "cancel_url": "http://localhost:3000/panelUsuario"
       },
       "transactions": [{
         "item_list": {
@@ -733,6 +733,14 @@ router.get('/successPage', function (req, res) {
             });
           }
         });
+      }
+      cookie = req.cookies;
+      delete req.cookies;
+      for (var prop in cookie) {
+        if (!cookie.hasOwnProperty(prop)) {
+          continue;
+        }
+        res.cookie(prop, '', { expires: new Date(0) });
       }
       res.render('successPage', { title: 'Gracias' });
     }
