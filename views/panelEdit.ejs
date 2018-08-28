@@ -254,12 +254,12 @@
                                             <div class="col-md-4">
                                                 <label class="">Nombre</label>
                                                 <div class="">
-                                                    <input name="titulo" id="titulo" value="<%=documentos.titulo %>" type="text" placeholder="Título" class="form-control form-control-line"> </div>
+                                                    <input name="titulo" id="titulo" value="<%=documentos.titulo %>" type="text" placeholder="Título" class="form-control form-control-line" autocomplete="off"> </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="">Autor</label>
                                                 <div class="">
-                                                    <input name="autor" id="autor" type="text" placeholder="Autor" class="form-control form-control-line" value="<%= documentos.autor %>">
+                                                    <input name="autor" id="autor" type="text" placeholder="Autor" class="form-control form-control-line" value="<%= documentos.autor %>" autocomplete="off">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -273,7 +273,7 @@
                                                             </option>
                                                             <%}%>
                                                     </select>-->
-                                                    <input name="tecnologia" id="tecnologia" type="text" placeholder="Tecnología" class="form-control form-control-line" value="<%= documentos.tecnologia %>">
+                                                    <input name="tecnologia" id="tecnologia" type="text" placeholder="Tecnología" class="form-control form-control-line" value="<%= documentos.tecnologia %>" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
@@ -281,13 +281,13 @@
                                             <div class="col-md-4">
                                                 <label class="">Cantidad</label>
                                                 <div class="">
-                                                    <input name="stock" id="stock" type="text" placeholder="Cantidad" class="form-control form-control-line" value="<%= documentos.existencia %>">
+                                                    <input name="stock" id="stock" type="text" placeholder="Cantidad" class="form-control form-control-line" value="<%= documentos.existencia %>" autocomplete="off">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="">Precio</label>
                                                 <div class="">
-                                                    <input name="precio" id="precio" type="text" placeholder="Precio" class="form-control form-control-line" value="<%= documentos.precio %>">
+                                                    <input name="precio" id="precio" type="text" placeholder="Precio" class="form-control form-control-line" value="<%= documentos.precio %>" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>

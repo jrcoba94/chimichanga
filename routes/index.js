@@ -60,11 +60,11 @@ router.post('/RegUsuario', function (req, res, next) {
   });
 });
 
-
+// Registro de Usuario <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 router.get('/sing', function (req, res, next) {
   res.render('singup', { title: 'Singup' });
 });
-router.post('/singup', function (req, res, next) {
+router.post('/singupUs', function (req, res, next) {
   db.query("SELECT ID, username, pass, usertype FROM user WHERE username = '" + req.body.username + "' AND pass = '" + req.body.password + "'", function (err, resultados) {
     if (err) throw err;
     if (resultados[0]) {
@@ -73,14 +73,14 @@ router.post('/singup', function (req, res, next) {
     else {
       var userC = {
         nombre: req.body.nombre,
-        apellido: req.body.apellidos,
-        email: req.body.email,
+        apellidos: req.body.apellidos,
         username: req.body.username,
-        pass: req.body.password,
+        email: req.body.email,
+        pass: req.body.pass,
         usertype: 2
       }
       db.query("INSERT INTO user SET ?", userC, function (err, resultados) {
-
+       console.log(userC); 
       });
       db.query("SELECT ID, username, pass, usertype FROM user WHERE username = '" + req.body.username + "' AND pass = '" + req.body.password + "'", function (err, resultados) {
         if (err) throw err;
@@ -106,7 +106,7 @@ router.post('/singup', function (req, res, next) {
     }
   });
 });
-
+// End Registro de Usuario <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 router.get('/acercade', function (req, res, next) {
   res.render('acercade', { title: 'Nosotros' });
