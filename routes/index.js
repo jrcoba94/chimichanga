@@ -61,6 +61,52 @@ router.post('/RegUsuario', function (req, res, next) {
 });
 
 
+router.get('/sing', function (req, res, next) {
+  res.render('singup', { title: 'Singup' });
+});
+router.post('/singup', function (req, res, next) {
+  db.query("SELECT ID, username, pass, usertype FROM user WHERE username = '" + req.body.username + "' AND pass = '" + req.body.password + "'", function (err, resultados) {
+    if (err) throw err;
+    if (resultados[0]) {
+
+    }
+    else {
+      var userC = {
+        nombre: req.body.nombre,
+        apellido: req.body.apellidos,
+        email: req.body.email,
+        username: req.body.username,
+        pass: req.body.password,
+        usertype: 2
+      }
+      db.query("INSERT INTO user SET ?", userC, function (err, resultados) {
+
+      });
+      db.query("SELECT ID, username, pass, usertype FROM user WHERE username = '" + req.body.username + "' AND pass = '" + req.body.password + "'", function (err, resultados) {
+        if (err) throw err;
+        if (resultados[0]) {
+          switch (resultados[0].usertype) {
+            case 1:
+              req.session.usertype = 1;
+              res.redirect('/panelProductos');
+              break;
+            case 2:
+              req.session.usertype = 2;
+              req.session.userid = resultados[0].ID;
+              res.redirect('/panelUsuario');
+              break;
+            default:
+              res.redirect('/login');
+          }
+        }
+        else {
+          res.redirect('/login');
+        }
+      });
+    }
+  });
+});
+
 
 router.get('/acercade', function (req, res, next) {
   res.render('acercade', { title: 'Nosotros' });
